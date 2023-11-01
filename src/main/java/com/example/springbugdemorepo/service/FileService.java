@@ -18,17 +18,8 @@ public class FileService {
   }
 
   public static class TestFileObj {
-    private String id;
     private String filename;
     private Long sizeBytes;
-
-    public String getId() {
-      return id;
-    }
-
-    public void setId(String id) {
-      this.id = id;
-    }
 
     public String getFilename() {
       return filename;
