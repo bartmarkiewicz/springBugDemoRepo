@@ -11,7 +11,7 @@ While the bug only appears rarely on a repo with a small/no custom filter chain 
 - Pull the repository
 - Run FileControllerTest
 - This will run the test 50000 times, on my machine it takes around 2 minutes, you should see some test failures.
-- 
+
 #Typical stack trace
 ```
 java.util.ConcurrentModificationException
