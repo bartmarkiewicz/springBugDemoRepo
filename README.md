@@ -7,7 +7,7 @@ There is a bug which appears occassionaly in tests on the MockHttpServletRespons
 
 While the bug only appears rarely on a repo with a small/no custom filter chain (like this repo), appearing about 1 in 10000 test runs on average on my machine. In bigger repos the bug occurs much more often, causing flaky tests and necessiating the re-running of the tests. 
 
-#How to replicate
+# How to replicate
 - Pull the repository
 - Set up a FileControllerTest run configuration for JUnit. Modify options and specify a large number of repeats, around 50000 almost always results in the bug occurring, or it can be set to run until failture.
 - See image for example run configuration. 
