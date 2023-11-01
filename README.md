@@ -9,14 +9,10 @@ While the bug only appears rarely on a repo with a small/no custom filter chain 
 
 # How to replicate
 - Pull the repository
-- Set up a FileControllerTest run configuration for JUnit. Modify options and specify a large number of repeats, around 50000 almost always results in the bug occurring, or it can be set to run until failture.
-- See image for example run configuration. 
-- Run FileControllerTest with your run configuration.
-- ![image](https://github.com/bartmarkiewicz/springBugDemoRepo/assets/39217312/a81a9fb6-9889-4ea1-81bb-09a1facd73ec)
-
-Must be noted that an alternative to JUnit and Intellij could be employed, eg a while loop, all we need is the ability to run the test large number of times. 
-
-
+- Run FileControllerTest
+- This will run the test 50000 times, on my machine it takes around 2 minutes, you should see some test failures.
+- 
+#Typical stack trace
 ```
 java.util.ConcurrentModificationException
 	at java.base/java.util.HashMap.computeIfAbsent(HashMap.java:1221)
