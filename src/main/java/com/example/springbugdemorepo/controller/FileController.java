@@ -1,7 +1,6 @@
 package com.example.springbugdemorepo.controller;
 
-import com.example.springbugdemorepo.service.FileService;
-import org.springframework.beans.factory.annotation.Autowired;
+import java.io.ByteArrayInputStream;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,27 +14,18 @@ import org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBo
 @RequestMapping("/rest/fish")
 public class FileController {
 
-  private final FileService fileService;
-
-  @Autowired
-  public FileController(FileService fileService) {
-    this.fileService = fileService;
-  }
-
   @GetMapping("/{fileId}")
   public ResponseEntity<StreamingResponseBody> downloadFile(@PathVariable String fileId) {
-    var fileObj = fileService.getTestFileObjById(fileId);
-
     final StreamingResponseBody body = outputStream -> {
-      try (outputStream; var inputStream = fileService.getFileContents(fileObj)) {
+      try (outputStream; var inputStream = new ByteArrayInputStream("2222".getBytes())) {
         inputStream.transferTo(outputStream);
       }
     };
 
     return ResponseEntity.ok()
         .contentType(MediaType.APPLICATION_OCTET_STREAM)
-        .contentLength(fileObj.getSizeBytes())
-        .header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=\"%s\"", fileObj.getFilename()))
+        .contentLength(4)
+        .header(HttpHeaders.CONTENT_DISPOSITION, String.format("attachment; filename=\"%s\"", "name"))
         .body(body);
   }
 }
