@@ -52,6 +52,7 @@ public class FileControllerTest {
   }
 
   //bug occurs rarely in apps with few filters, so we need to run it many times
+  //Instead of repeated test annotation a while loop or a JUnit run config can be used to run the test
   @RepeatedTest(50000)
   void testDownloadFile() throws Exception {
     //typical download file mockmvc test
