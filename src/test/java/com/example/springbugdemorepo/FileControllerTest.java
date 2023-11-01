@@ -15,6 +15,7 @@ import com.example.springbugdemorepo.controller.FileController;
 import com.example.springbugdemorepo.service.FileService;
 import java.io.ByteArrayInputStream;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,13 +51,14 @@ public class FileControllerTest {
         .build();
   }
 
-  @Test
+  //bug occurs rarely in apps with few filters, so we need to run it many times
+  @RepeatedTest(50000)
   void testDownloadFile() throws Exception {
+    //typical download file mockmvc test
     var testFileObj = new FileService.TestFileObj();
     byte[] bytes = "a".repeat(FILE_SIZE.intValue()).getBytes();
     testFileObj.setFilename(FILE_NAME);
     testFileObj.setSizeBytes(FILE_SIZE);
-    testFileObj.setId(FILE_ID);
     when(mockFileService.getTestFileObjById(FILE_ID))
         .thenReturn(testFileObj);
 
@@ -67,7 +69,7 @@ public class FileControllerTest {
       var mvcResult = mockMvc.perform(get("/rest/fish/%s".formatted(FILE_ID))
               .with(csrf())
               .with(user("valid")))
-          .andExpect(request().asyncStarted())
+          .andExpect(request().asyncStarted()) //bug occurs in async requests
           .andDo(result -> result.getAsyncResult(3000L))
           .andReturn();
 
