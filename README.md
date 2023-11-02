@@ -5,7 +5,7 @@ There is a bug which appears occassionaly in tests on the MockHttpServletRespons
 # ConcurrentModificationException 
 ![image](https://github.com/bartmarkiewicz/springBugDemoRepo/assets/39217312/f2cecd9d-6f0d-4e13-9d31-dde0c2c6408f)
 
-While the bug only appears rarely on a repo with a small/no custom filter chain (like this repo), appearing and causing a test failure about 1 in 500 test runs on average on my machine. In bigger repos the bug occurs more often, causing flaky tests and necessiating the re-running of the tests. Mocking the input stream doesn't seem to work around the issue but reduces its occurence. 
+The occurence of the bug varies depending on the controller endpoint implementation, the filter chain, or other config. In this repo running this test results in a test failure about 8 in 500 test runs on average. In bigger repos the bug can occur more or less often causing flaky tests and necessiating the re-running of the tests. Mocking the input stream doesn't seem to work around the issue but reduces its occurence. 
 
 # How to replicate
 - Pull the repository
