@@ -8,7 +8,7 @@ There is a bug which appears occassionaly in tests on the MockHttpServletRespons
 The occurence of the bug varies depending on the controller endpoint implementation, the filter chain, or other config. In this repo running this test results in a test failure about 8 in 500 test runs on average on my machine. In bigger repos the bug can occur more or less often causing flaky tests and necessiating the re-running of the tests. Mocking the input stream doesn't seem to work around the issue but reduces its occurence. 
 
 # Spring Framework versions affected
-3.0.7 and 3.2.0-SNAPSHOT, potentially all
+Defnitely 3.0.7 and 3.2.0-SNAPSHOT
 
 # How to replicate
 - Pull the repository
