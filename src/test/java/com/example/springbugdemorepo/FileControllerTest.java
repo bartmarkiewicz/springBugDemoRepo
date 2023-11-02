@@ -36,7 +36,7 @@ public class FileControllerTest {
 
   @BeforeEach
   void setUp() {
-    //need spring security
+    //need spring security, without a filter chain the bug won't occur
     mockMvc = MockMvcBuilders
         .webAppContextSetup(context)
         .apply(springSecurity())
